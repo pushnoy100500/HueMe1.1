@@ -31,6 +31,7 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 				case "id":
 					postingService.getPostsByUser(this.filter.value,
 					function(result) {
+						console.log(result)
 						self.waiting = false;
 						self.posts = result;
 						self.posts = self.posts.map(function(post) {

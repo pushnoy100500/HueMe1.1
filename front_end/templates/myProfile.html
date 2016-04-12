@@ -32,7 +32,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<label class="">Description:</label>
-							<textarea class="form-control" ng-hide="profileCtrl.editorEnabled" rows="3" style="resize: none; cursor: default" disabled placeholder="{{this.user.description}}"></textarea>
+							<textarea class="form-control" ng-hide="profileCtrl.editorEnabled" rows="3" style="resize: none; cursor: default" disabled placeholder="{{profileCtrl.user.description}}"></textarea>
 							<textarea class="form-control" ng-show="profileCtrl.editorEnabled" placeholder="Description" ng-model="profileCtrl.temp.description" rows="3" style="resize: none;"></textarea>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 								</ui-select>
 							</div>
 						</div>
-					</div>a
+					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<label>Gender:</label>
@@ -130,5 +130,5 @@
 	</div>
 </form>
 
-<post-listing-dir filter="{'criteria': 'userId', 'value': profileCtrl.user.id, 'profileId' : profileCtrl.user.id}"></post-listing-dir>
+<post-listing-dir filter="{'criteria': 'id', 'value': profileCtrl.user.id, 'profileId' : profileCtrl.user.id}"></post-listing-dir>
 </main>

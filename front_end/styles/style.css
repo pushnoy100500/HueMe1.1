@@ -396,11 +396,23 @@ input[type=checkbox]:checked + label:after {
 .postComment {
 	border: 1px solid rgba(0,0,0, 0.3);
 	margin: 10px 0 10px 0;
+
 }
 
 .postCommentBody {
 	padding: 10px;
 	word-break: break-all;
+
+}
+
+.commentedBy {
+	font-weight: lighter;
+	font-style: italic;
+	padding: 5px;
+}
+.commentedBy img {
+	width: 25px;
+	height: auto;
 }
 
 .postComment:nth-child(2n+1) {

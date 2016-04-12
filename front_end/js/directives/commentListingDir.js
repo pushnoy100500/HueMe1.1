@@ -14,6 +14,7 @@ app.directive('commentListingDir', function(commentingService) {
 			this.postId = $scope.dataarg.posts[this.postIndex].id;
 
 			commentingService.getComments(this.postId, function(result) {
+				console.log(result);
 				self.waiting = false;
 				self.comments = result;
 				self.comments = self.comments.map(function(comment) {

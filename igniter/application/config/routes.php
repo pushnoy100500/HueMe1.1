@@ -73,9 +73,11 @@ $route['allPosts'] = 'Posts/getAllPosts';
 $route['postsByUser/(:num)'] = 'Posts/getAllPostsByUser/$1';
 $route['postsByColour/(:num)'] = 'Posts/getAllPostsByColour/$1';
 $route['postsByTen/(:num)'] = 'Posts/getPostsByTen/$1';
+$route['getRecent/(:num)'] = 'Posts/getRecent/$1';
+$route['getComments/(:num)'] = 'Posts/getComments/$1';
 
 //admin routes
-$route['admin'] = 'Admin/index';
+$route['admin'] = 'admin/Admin/index';
 $route['activateUser/(:num)'] = 'Admin/activateMember/$1';
 $route['deactivateUser/(:num)'] = 'Admin/deactivateMember/$1';
 $route['activatePost/(:num)'] = 'Admin/activatePost/$1';

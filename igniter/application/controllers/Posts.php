@@ -36,7 +36,7 @@ class Posts extends CI_Controller{
        $this->load->view('PostsView', $data);
      }
 
-
+     
      public function getAllPostsByUser($id){
 		//qury all users posts
        //$user = $this->input->get('id');
@@ -51,7 +51,6 @@ class Posts extends CI_Controller{
 
      }
 
-
      public function getPostsByTen($startIndex){
     //get 10 posts at a time startoing from the index recieved
       //$post = json_decode(file_get_contents('php://input'), true)['post'];
@@ -59,14 +58,14 @@ class Posts extends CI_Controller{
       $this->load->view('PostsView', $data);
     }
 
-		public function getComments($postId) {
-			$data['data'] = $this->PostsModel->getComments($postId);
+    public function getComments($postId) {
+      $data['data'] = $this->PostsModel->getCommentsFor($postId);
       $this->load->view('PostsView', $data);
-		}
+    }
 
-		public function getRecent ($postNum) {
-			$data['data'] = $this->PostsModel->getPosts($postNum);
-			$this->load->view('PostsView', $data);
-		}
+    public function getRecent ($postNum) {
+      $data['data'] = $this->PostsModel->getPosts($postNum);
+      $this->load->view('PostsView', $data);
+    }
 
   }

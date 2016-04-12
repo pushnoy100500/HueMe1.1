@@ -1,0 +1,21 @@
+table {
+	width: 1000px;
+	margin: 0 auto;
+}
+table td {
+	min-width: 25px;
+	max-width: 110px;
+	word-break: break-all;
+}
+tr:nth-child(even) {
+    background: #E9EFF1;
+}
+th{
+    font-weight: bold;
+    background: 
+}
+
+th, td{
+    padding: 2px;
+    text-align: center;
+}

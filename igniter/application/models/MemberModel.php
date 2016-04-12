@@ -8,7 +8,6 @@ class MemberModel extends CI_Model {
         if(!$this->userExists($json_reg['username'],$json_reg['email'])){
 
             $qr = 'INSERT INTO users (username, password, email) VALUES ("' . $json_reg['username'] . '", "' . $json_reg['password'] . '", "' . $json_reg['email'] . '")';
-
             $rs = $this->db->query($qr);
 
         //this is the same as inser_id in php
@@ -38,7 +37,7 @@ class MemberModel extends CI_Model {
         }else{
             return false;
         }
-    }
+    } 
 
     public function getData($returnNum) {
         $query = 'SELECT p.id "id", p.content "post", p.create_time "time", u.username "user", mc.colour "colour" FROM posts p, users u, mood_colours mc WHERE p.users_id = u.id AND p.mood_colours_id = mc.id ORDER BY p.create_time DESC LIMIT ' . $returnNum;
@@ -48,19 +47,18 @@ class MemberModel extends CI_Model {
 
     public function updateProfile($user) {
 
-        $query = "UPDATE users SET photo_url='" . $user['photo_url'] . "', dob='" .
+        $query = "UPDATE users SET photo_url='" . $user['photo_url'] . "', dob='" . 
         $user['dob'] ."' ,description='" . addslashes($user['description']) . "',gender='" . $user['gender'] .
         "',status='" . addslashes($user['description']) . "',country='" . $user['country'] . "',region='" .
-        $user['region'] . "',city='" . $user['city'] . "' WHERE id = '" . $user['id'] . "'";
+        $user['region'] . "',city='" . $user['city'] . "' WHERE username = '" . $user['username'] . "'";
         //,mood_colours_id=" . $user['colour'] . "
-
+        
         if($this->usernameExists($user['username'])){
-            //return json_encode('{"result" : " ' . $rs = $this->db->query($query) . '"}');
-            return json_encode(array('result' => $rs = $this->db->query($query)));
+            return json_encode('{"result" : " ' . $rs = $this->db->query($query) . '"}');
         }else{
-            return json_encode(array('result' => '0'));
+            return json_encode('{"result" : "0"}');
         }
-
+        
     }
 
     private function getProfile($id) {
@@ -70,18 +68,18 @@ class MemberModel extends CI_Model {
 
         return json_encode($user);
     }
-
+    
 
     public function usernameExists($username){
         $qry = "SELECT id FROM users WHERE username = '" . $username . "'";
         $id = $this->db->query($qry);
         $row = $id->result_array();
         if(count($row) > 0){
-            return true;
+            return true;    
         }else {
             return false;
         }
-        //return json_encode($row); //) ? "true" : "false");
+        //return json_encode($row); //) ? "true" : "false"); 
     }
 
     public function userEmailExists($email){
@@ -89,15 +87,15 @@ class MemberModel extends CI_Model {
         $id = $this->db->query($qry);
         $row = $id->result_array();
         if(count($row) > 0){
-            return true;
+            return true;    
         }else {
             return false;
         }
-
+        
     }
 
     public function userExists($username, $email){
-        if($this->usernameExists($username) && $this->userEmailExists($email)){
+        if($this->usernameExists($username) || $this->userEmailExists($email)){
             return true;
         }else{
             return false;

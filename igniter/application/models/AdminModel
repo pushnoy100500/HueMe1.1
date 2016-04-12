@@ -1,6 +1,0 @@
-<?php
-
-class MemberModel extends CI_Model {
-
-
-}

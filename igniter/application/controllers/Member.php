@@ -19,7 +19,6 @@ class Member extends CI_Controller {
   public function index() {
         //$this->load->model('MemberModel'); //Loads the model
         $data['data'] = $this->MemberModel->getData(3); //executes function from model returns rexcord set
-        sleep(2);
         $this->load->view('MemberView', $data); //directs and passes data from the databse to the view
     }
 

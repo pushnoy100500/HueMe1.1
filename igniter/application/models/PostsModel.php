@@ -57,11 +57,14 @@ class PostsModel extends CI_Model{
 	     return $row; //) ? "true" : "false");        
 	    }
 
-	 public function getCommentsFor($postId){
-		$qry = 'SELECT * FROM comments WHERE posts_id = ' . $postId;
+	 public function getCommentsFor($postId) {
+		//$qry = 'SELECT * FROM comments WHERE posts_id = ' . $postId;
+		$qry = 'SELECT c.id, c.create_time, c.content, c.posts_id, u.username, u.photo_url FROM comments c INNER JOIN users u ON c.users_id = u.id WHERE c.posts_id = ' . $postId;
 		$comments = $this->db->query($qry);
 		return json_encode($comments->result_array());
-
+		/*
+	SELECT c.id, c.create_time, c.content, c.posts_id, u.username FROM comments c INNER JOIN users u ON c.users_id = u.id WHERE c.posts_id = 5
+		*/
 	}
 	public function getPosts($returnNum){
 			//$query = "SELECT * FROM posts  ORDER BY create_time  DESC LIMIT " . $returnNum;

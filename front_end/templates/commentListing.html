@@ -1,0 +1,15 @@
+<h6 ng-show="commentListingCtrl.waiting">
+	<!-- alternatively this should be a preloader -->
+	<img src="styles/styleImgs/posts-loader.gif" alt="">
+</h6>
+<span ng-show="!commentListingCtrl.waiting" ng-if="commentListingCtrl.comments.length == 0" id="noPost">
+	No one has commented yet... be the first!
+</span>
+
+<div class="postComment" ng-show="!commentListingCtrl.waiting" ng-repeat="comment in commentListingCtrl.comments" ng-if="commentListingCtrl.comments.length > 0">
+	<div class="postCommentBody">
+		{{comment.content}}
+	</div>
+
+	<div class="postCommentFooter"><i class="fa fa-clock-o"></i> {{comment.create_time}} ago</div>
+</div>

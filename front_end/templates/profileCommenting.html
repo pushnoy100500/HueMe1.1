@@ -1,0 +1,14 @@
+<form class="comment-form">
+	<div class="form-group">
+			<div class="input-group">
+		    <textarea placeholder="Leave a comment!" class="form-control custom-control comment-textarea" ng-model="postCommentingCtrl.commentData.content" name="comment" maxlength="150" rows="2" style="resize:none;"></textarea>
+		    <span class="input-group-addon btn btn-primary" ng-click="postCommentingCtrl.submitComment()">
+					Send <i class="fa fa-rocket fa" ></i><br /><br />
+					<span class="comment-form-text-limit">{{150 - postCommentingCtrl.commentData.content.length}} / 150</span>
+				</span>
+			</div>
+			<span id="commentSuccess" ng-if="postCommentingCtrl.commentsent">
+				Comment Saved!
+			</span>
+	</div>
+</form>

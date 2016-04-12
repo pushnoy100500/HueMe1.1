@@ -1,0 +1,57 @@
+<a ui-sref="landing">
+	<div class="custom-modal-backdrop"></div>
+</a>
+<div class="container custom-modal">
+	<div class="modal-header">
+		<a ui-sref="landing">
+			<button type="button" class="close" aria-hidden="true"><i class="fa fa-times"></i></button>
+		</a>
+		<h2 class="modal-title">Registration</h2>
+	</div>
+	<form ng-submit="ctrl.formSubmit();" novalidate="novalidate">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+				<input ng-model="ctrl.formModel.username" ng-pattern="/^[A-Za-z0-9_]{1,15}$/" ng-pattern-err-type="unameErr" ng-minlength="5" type="text" class="form-control" id="username" name="username" required autocomplete="off" placeholder="Username"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+				<input ng-model="ctrl.formModel.password" ng-pattern="/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/"  ng-minlength="8" ng-pattern-err-type="tooSimplePass" type="{{ctrl.inputType}}" class="form-control" id="password" name="password" required autocomplete="off" placeholder="Password"/>
+				<span class="input-group-addon revealPass" ng-mousedown="ctrl.showPass();" ng-mouseup="ctrl.hidePass();"><i class="fa fa-eye"></i></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+				<input ng-model="ctrl.formModel.email" type="email" class="form-control" id="email" name="email" required autocomplete="off" placeholder="Email address"/>
+			</div>
+		</div>
+		<div class="checkboxes">
+			<div class="form-group tos-group" style="margin: 10px 0 5px 0;">
+				<input type="checkbox" id="tos" name="tos" required>
+				<label for="tos"></label>
+				<span>I agree with the <a  ui-sref="landing.tos" class="tos-button">terms of service</a>. </span>
+
+			</div>
+
+			<div lass="form-group" style="margin-bottom: 5px">
+
+				<input type="checkbox" id="ageVerify" name="ageVerify" required>
+				<label for="ageVerify"></label>
+				<span>I confirm that I am AT LEAST 14 years of age.</span>
+
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn btn-primary btn-block" type="submit" style="margin: 10px 0 20px 0">Register</button>
+			<a ui-sref="landing">
+				<button class="btn btn-default btn-block">Cancel</button>
+			</a>
+		</div>
+		<br />
+	</form>
+</div>

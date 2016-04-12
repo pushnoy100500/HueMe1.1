@@ -1,0 +1,47 @@
+<a ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode">
+	<div class="custom-modal-backdrop"></div>
+</a>
+<div class="container custom-modal">
+	<div class="modal-header">
+		<a ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode">
+			<button type="button" class="close" aria-hidden="true"><i class="fa fa-times"></i></button>
+		</a>
+		<h2 class="modal-title">Create New Post</h2>
+	</div>
+		<form action="" ng-submit="profilePostingCtrl.makePost($event)">
+			<div class="form-group">
+				<br />
+				<label>What mood are you in?</label>
+				<select class="form-control color{{profilePostingCtrl.postingData.mood_colours_id}}" ng-model="profilePostingCtrl.postingData.mood_colours_id">
+					<option value="" selected="selected">- Select Your Mood -</option>
+					<option ng-repeat="(key, val) in profilePostingCtrl.moodColours" value="{{key}}" class="color{{key}}">{{val}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Add some hash tags:
+					<span ng-repeat="tag in profilePostingCtrl.hashTags track by $index" class="hash-tag color{{profilePostingCtrl.postingData.mood_colours_id}}">
+						#{{tag}}
+						<span ng-click="profilePostingCtrl.removeHashTag($index)" class="remove-hash-tag">
+							 <i class="fa fa-times"></i>
+						</span>
+					</span>
+				</label>
+				<input type="text" class="form-control hash-tag-input" ng-model="profilePostingCtrl.hashTag" ng-keyup="profilePostingCtrl.addHashTag($event, profilePostingCtrl.hashTag)" ng-keypress="$event.which == 13 ? $event.preventDefault() : ''	" placeholder="tags">
+			</div>
+			<div class="form-group">
+				<label>Your message:</label>
+				<div class="input-group">
+					<textarea required placeholder="Tell us about your day!" ng-model="profilePostingCtrl.postingData.content" class="form-control" rows="3" maxlength="150" style="resize:none;"></textarea>
+					<span class="input-group-addon">
+						{{150 - profilePostingCtrl.postingData.content.length}} / 150
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit" ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode">Post <i class="fa fa-rocket fa" ></i></button>
+				<br />
+				<button class="btn btn-default btn-block" type="reset" ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode">Cancel</i></button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="landing-page">
+	<section class="jumbotron city-view">
+		<img src="styles/styleImgs/car.png" id="car" class="cars"  alt="">
+		<img src="styles/styleImgs/car.png" id="car1" class="cars" alt="">
+		<img src="styles/styleImgs/car.png" id="car2" class="cars" alt="">
+
+		<div class="container">
+			<h1>Tell us about <span><div id="underline"><strong>y</strong><strong>o</strong><strong>u</strong><strong>r</strong> <strong>d</strong><strong>a</strong><strong>y</strong></div></span></h1>
+			<p>Share your experiences</p>
+			<div class="row reg-log">
+				<div class="col-xs-12 col-sm-6 col-md-6 actions">
+					<a ui-sref="landing.login">Sign-in <i class="fa fa-sign-in"></i></a>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 actions">
+					<a ui-sref="landing.register">Register <i class="fa fa-user-plus"></i></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="postBox">
+		<div class="postWrap"  ng-repeat="value in postsCtrl.posts">
+			<div class="post">
+				<div class="post-header color{{value.colour}}" style="border-radius: 8px 8px 0 0">
+					<div ng-if="value.photo">
+						<img class="post-profile-photo" ng-src="{{value.photo}}" alt="profile_photo" />
+					</div>
+					<div ng-if="!value.photo">
+						<img class="post-profile-photo" src="styles/styleImgs/avatarD1.png" />
+					</div>
+					<div class="post-author">{{value.user}}</div>
+				</div>
+				<br />
+				<div class="post-content">{{value.post}}</div>
+
+				<div class="post-footer color{{value.colour}}">{{value.time}} ago
+				<div class="float-right">
+						<a ui-sref="landing.register"><i class="fa fa-comment"></i></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section ui-view></section>
+</div>

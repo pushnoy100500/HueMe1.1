@@ -1,0 +1,134 @@
+<!--header, etc-->
+<!--nav goes here-->
+<main class="my-profile">
+	<!-- navigation -->
+	<navigation-dir></navigation-dir>
+	<!-- navigation -->
+	<header class="profile-header">
+	</header>
+<!--profile form-->
+<div class="avatar-username-wrap">
+	<img ng-src="{{profileCtrl.user.photo_url ? profileCtrl.user.photo_url : '/styles/styleImgs/avatarD1.png' }}" alt="avatar" class="avatar">
+	<span class="profile-username">{{profileCtrl.user.username}}</span>
+</div>
+<form>
+	<div class="row">
+		<div class="panel panel-primary flex-panel" ng-show="profileCtrl.editorEnabled">
+			<div class="panel-heading">Select Avatar</div>
+			<div class="panel-body">
+				<div class="avatars-wrap">
+					<img ng-if="profileCtrl.user.photo_url" ng-src="{{profileCtrl.user.photo_url}}" class="avatars"><img ng-show="profileCtrl.editorEnabled" ng-click="profileCtrl.avatSel($index)" ng-repeat="a in profileCtrl.avatars" ng-src="{{a.url}}" ng-class="{border: $index +1 == profileCtrl.selected}" class="avatars" />
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-primary flex-panel">
+			<div class="panel-heading">About Me
+				 <i class="fa fa-pencil edit-profile" ng-click="profileCtrl.enableEditor()" ng-hide="profileCtrl.editorEnabled"></i>
+				 <i class="fa fa-times edit-profile" ng-show="profileCtrl.editorEnabled" value="cancel" ng-click="profileCtrl.disableEditor()"></i>
+				 <i class="fa fa-floppy-o edit-profile" ng-show="profileCtrl.editorEnabled" value="save" ng-click="profileCtrl.save()" style="margin-right: 5px;"></i>
+			</div>
+			<div class="panel-body spacing-fix form-flex">
+				<div class="form-wrap">
+					<div class="form-group">
+						<div class="input-group">
+							<label class="">Description:</label>
+							<textarea class="form-control" ng-hide="profileCtrl.editorEnabled" rows="3" style="resize: none; cursor: default" disabled placeholder="{{this.user.description}}"></textarea>
+							<textarea class="form-control" ng-show="profileCtrl.editorEnabled" placeholder="Description" ng-model="profileCtrl.temp.description" rows="3" style="resize: none;"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="form-wrap">
+					<div class="form-group">
+						<div class="input-group">
+							<label>Date of Birth:</label>
+							<br />
+							<div class="input-group" ng-hide="profileCtrl.editorEnabled">
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.dob.month}}" style="width: 125px; cursor: default;" disabled>
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.dob.day}}" style="width: 75px; margin: 0 4px 0 4px; cursor: default" disabled>
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.dob.year}}" style="width: 100px; cursor: default" disabled>
+							</div>
+							<div ng-show="profileCtrl.editorEnabled" style="margin-bottom: -8px;">
+								<ui-select ng-model="profileCtrl.temp.dob.month" theme="bootstrap" style="width: 125px; display: inline-block;" ng-show="profileCtrl.editorEnabled">
+									<ui-select-match placeholder="Month">{{$select.selected}}</ui-select-match>
+									<ui-select-choices style="max-width: 150px; min-width: 125px; margin-top: 0px;" repeat="month in profileCtrl.months | filter: $select.search">
+										<span ng-bind-html="month | highlight: $select.search"></span>
+									</ui-select-choices>
+								</ui-select>
+								<ui-select ng-model="profileCtrl.temp.dob.day" theme="bootstrap" style="width: 75px; display: inline-block;" ng-show="profileCtrl.editorEnabled">
+									<ui-select-match placeholder="Day">{{$select.selected}}</ui-select-match>
+									<ui-select-choices style="max-width: 75px; min-width: 75px; position: absolute; margin-top: 0;" repeat="day in [] | range:1:profileCtrl.days[profileCtrl.temp.dob.month] | filter: $select.search">
+										<span ng-bind-html="day | highlight: $select.search"></span>
+									</ui-select-choices>
+								</ui-select>
+								<ui-select ng-model="profileCtrl.temp.dob.year" theme="bootstrap" style="width: 100px; display: inline-block;" ng-show="profileCtrl.editorEnabled">
+									<ui-select-match placeholder="Year">{{$select.selected}}</ui-select-match>
+									<ui-select-choices style="max-width: 100px; min-width: 100px; position: absolute; margin-top: 0;" repeat="year in [] | range:1916:2016 | filter: $select.search">
+										<span ng-bind-html="year | highlight: $select.search"></span>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>a
+					<div class="form-group">
+						<div class="input-group">
+							<label>Gender:</label>
+							<div class="input-group" ng-hide="profileCtrl.editorEnabled">
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.gender}}" style="width: 175px; cursor: default" disabled>
+							</div>
+							<ui-select ng-model="profileCtrl.temp.gender" theme="bootstrap" style="width:175px" ng-show="profileCtrl.editorEnabled">
+								<ui-select-match placeholder="Select Gender">{{$select.selected}}</ui-select-match>
+								<ui-select-choices repeat="gender in profileCtrl.genders | filter: $select.search" style="margin-top: 0">
+									<span ng-bind-html="gender | highlight: $select.search"></span>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+					</div>
+				</div>
+				<div class="form-wrap">
+					<div class="form-group">
+						<div class="input-group">
+							<label>Country:</label>
+							<div class="input-group" ng-hide="profileCtrl.editorEnabled">
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.country}}" style="width: 308px; cursor: default" disabled>
+							</div>
+							<ui-select ng-model="profileCtrl.temp.country" theme="bootstrap" style="width: 308px;" ng-show="profileCtrl.editorEnabled">
+						    <ui-select-match placeholder="Select Country">{{$select.selected}}</ui-select-match>
+						    <ui-select-choices repeat="country in profileCtrl.countries | filter: $select.search" style="margin-top: 0">
+						      <span ng-bind-html="country | highlight: $select.search"></span>
+						    </ui-select-choices>
+						  </ui-select>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<label>Region:</label>
+							<div class="input-group" ng-hide="profileCtrl.editorEnabled">
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.region}}" style="width: 308px; cursor: default" disabled>
+							</div>
+							<ui-select ng-model="profileCtrl.temp.region" theme="bootstrap" style="width: 308px;" ng-show="profileCtrl.editorEnabled">
+								<ui-select-match placeholder="Select Region">{{$select.selected}}</ui-select-match>
+								<ui-select-choices repeat="region in profileCtrl.regions[profileCtrl.temp.country] | filter: $select.search" style="margin-top: 0">
+									<span ng-bind-html="region | highlight: $select.search"></span>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<label>City:</label>
+							<br />
+							<div class="input-group" ng-hide="profileCtrl.editorEnabled">
+								<input type="text" class="form-control" placeholder="{{profileCtrl.user.city}}" style="width: 308px; cursor: default" disabled>
+							</div>
+							<input class="form-control" ng-show="profileCtrl.editorEnabled" type="text" ng-model="profileCtrl.temp.city" style="width: 308px;" placeholder="Enter City">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<post-listing-dir filter="{'criteria': 'userId', 'value': profileCtrl.user.id, 'profileId' : profileCtrl.user.id}"></post-listing-dir>
+</main>

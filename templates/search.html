@@ -1,0 +1,16 @@
+<main class="my-profile">
+	<navigation-dir></navigation-dir>
+
+	<div class="row" style="background: #eee">
+		<div class="col-md-10 col-md-offset-1">
+			<h3>Refine the mood!</h3>
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="narrowDown" placeholder="Search by Tag, Username, or Keyword(s)">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<post-listing-dir poststemp="searchStateCtrl.posts" filter="{'criteria': 'general', 'value': {'tags': searchStateCtrl.filter.tags, 'users': searchStateCtrl.filter.users, 'narrowDown': narrowDown}}"></post-listing-dir>
+</main>

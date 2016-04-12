@@ -1,0 +1,53 @@
+<h3 ng-show="postListingCtrl.waiting">
+
+	<!-- alternatively this should be a preloader -->
+	<img src="styles/styleImgs/posts-loader.gif" alt="">
+</h3>
+<div ng-show="!postListingCtrl.waiting">
+	<section ng-if="postListingCtrl.posts.length == 0">
+		<span id="noPost">- No Posts Yet -</span>
+	</section>
+    <section id="postBox">
+		<div class="postWrap"  ng-repeat="value in postListingCtrl.posts | filter:$parent.narrowDown">
+			<div class="post" ng-class="{commentBox : $index == postListingCtrl.selectedIndex && postListingCtrl.commentingMode, ClosecommentBox : $index == postListingCtrl.selectedIndex && !postListingCtrl.commentingMode}">
+				<div class="post-header {{value.colour}}">
+					<div ng-if="value.photo">
+						<img class="post-profile-photo" ng-src="{{value.photo}}" alt="profile_photo" />
+					</div>
+					<div ng-if="!value.photo">
+						<img class="post-profile-photo" src="styles/styleImgs/avatarD1.png" />
+					</div>
+					<div class="post-author">
+						{{value.username}}
+					</div>
+					<div class="post-content">
+						<br />
+						{{value.post}}
+						<ul>
+							<li ng-repeat="tag in value.tags track by $index" class="hash-tag">#{{tag}}</li>
+						</ul>
+						<div ng-if="$index == postListingCtrl.selectedIndex && postListingCtrl.commentingMode">
+							<div class="postCommentsWrap">
+								<comment-listing-dir dataarg="{'posts' : postListingCtrl.posts, 'index' : postListingCtrl.selectedIndex}"></comment-listing-dir>
+							</div>
+						</div>
+						<div ng-if="$index == postListingCtrl.selectedIndex && postListingCtrl.commentingMode">
+							<profile-commenting-dir dataarg="{'commenterId': postListingCtrl.userId , 'posts' : postListingCtrl.posts, 'index' : postListingCtrl.selectedIndex}"></profile-commenting-dir>
+						</div>
+					</div>
+					<div class="post-footer {{value.colour}}">
+						<span class="post-time"> <i class="fa fa-clock-o"></i> {{value.time}} ago</span>
+						<div class="float-right" id="comment" ng-click="postListingCtrl.enableComment($index)">
+							<i class="fa fa-comment fa"></i>
+						</div>
+						<!--
+						<div class="float-left" id="view" ng-click="postListingCtrl.viewComment($index)" ng-hide="postListingCtrl.commentingMode && $index == postListingCtrl.selectedIndex" >
+								<i class="fa fa-eye fa"></i>
+						</div>
+					-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

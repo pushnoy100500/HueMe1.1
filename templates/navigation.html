@@ -1,0 +1,60 @@
+<nav class="navbar navbar-inverse">
+	  	<div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-hueme-navbar-collapse" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" alt="Hueme" title="Hueme"><img alt="Hueme" src="styles/styleImgs/logo.png" style="width: 75px;"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-hueme-navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					 <li><a ui-sref="myprofile" alt="Home" title="Home"><i class="fa fa-home fa-2x"></i><span class="sr-only">Home</span></a></li>
+					 <!--<li><a ui-sref="myprofile.profileposting" alt="Create New Post" title="Create New Post"><i class="fa fa-plus-circle fa-2x"></i><span class="sr-only">Create New Post</span></a></li>-->
+					 <li><a ui-sref="search" alt="Search Profiles" title="View Posts"><i class="fa fa-comments-o fa-2x"></i><span class="sr-only">View Posts</span></a></li>
+					 <li class="dropdown">
+						 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" alt="Search Posts" title="Search Posts"><i class="fa fa-search fa-2x"></i></a>
+						 <div class="dropdown-menu" style="padding: 15px; min-width: 350px;">
+							 <div class="form-group">
+								 <div class="input-group">
+									 <span class="input-group-addon"><i class="fa fa-hashtag fa-fw"></i></span>
+									 <input class="form-control" id="search-tags" name="search-tags" placeholder="Hashtag" ng-model="tags"/>
+								 </div>
+							 </div>
+							 <div class="form-group">
+								 <div class="input-group">
+									 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+									 <input class="form-control" id="search-users" name="search-users" placeholder="Username" ng-model="users"/>
+								 </div>
+							 </div>
+							 <button class="btn btn-primary btn-block" ng-click="navigationCtrl.startSearch(tags, users)">
+							 	Search
+							 </button>
+						 </div>
+					 </li>
+					 <li class="dropdown">
+					 	 <a href="" ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode" class="dropdown-toggle" alt="Add Post" title="Add Post">
+					 	 	<i class="fa fa-plus fa-2x"></i>
+							<span class="sr-only">Add Post</span>
+					 	 </a>
+						 <div ng-show="navigationCtrl.postingMode">
+							<profile-posting-dir></profile-posting-dir>
+						 </div>
+					 </li>
+					 <li><a href="" ng-click="navigationCtrl.logOut()"><i class="fa fa-sign-out fa-2x" alt="Sign-Out" title="Sign-Out"></i><span class="sr-only">Sign-out</span></a></li>
+				 </ul>
+			 </div>
+		 </div>
+		</nav>
+		<script>
+
+			$(function() {
+			  $('.dropdown-toggle').dropdown();
+			  $('.dropdown input, .dropdown label').click(function(e) {
+			    e.stopPropagation();
+			  });
+			});
+		</script>

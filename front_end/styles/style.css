@@ -346,6 +346,12 @@ input[type=checkbox]:checked + label:after {
 	max-height: 51vh !important;
 }
 
+.exist-error {
+	font-style: italic;
+	font-weight: lighter;
+	color: red;
+}
+
 /* form-control-feedback fix */
 .form-control-feedback {
   top: 18px;

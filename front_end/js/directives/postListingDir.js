@@ -31,12 +31,12 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 				case "id":
 					postingService.getPostsByUser(this.filter.value,
 					function(result) {
-						console.log(result)
+						console.log(result);
 						self.waiting = false;
 						self.posts = result;
 						self.posts = self.posts.map(function(post) {
 								//var post = post;
-								post.time = timeSinceService.timeSince(new Date(post.time));
+								post.time = timeSinceService.timeSince(post.time);
 								if(post.tags){
 									post.tags = post.tags.split(',');
 								}
@@ -88,9 +88,9 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 		 	$scope.$on('commentSubmit', function() {
 		 			$timeout(function() {
 		 				$scope.$broadcast("commentPosted");
-		 			}, 200);		 			
+		 			}, 200);
 		 	})
-		 	
+
 		},
 		controllerAs: "postListingCtrl"
 	};

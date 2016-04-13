@@ -4,7 +4,7 @@ app.service("updateProfileService", function($http, $localStorage, urlService) {
 		$http.post(urlService.updateProfUrl, {'user': userData })
 		.then(function(response) {
 			console.log(response);
-			callback(response.result);
+			callback(response.data.result);
 		}, function(error) {
 			console.log(error);
 			callback(false);

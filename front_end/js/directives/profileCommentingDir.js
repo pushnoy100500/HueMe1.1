@@ -26,6 +26,8 @@ app.directive('profileCommentingDir', function(postingService, commentingService
 	 					commentingService.sendComment(this.commentData);
 	 					this.commentsent = true;
 	 				}
+	 			$scope.$emit('commentSubmit');
+	 			
   		 	};
 		},
 		controllerAs: "postCommentingCtrl"

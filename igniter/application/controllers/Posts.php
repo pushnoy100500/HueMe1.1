@@ -66,6 +66,11 @@ class Posts extends CI_Controller{
     public function getRecent ($postNum) {
       $data['data'] = $this->PostsModel->getPosts($postNum);
       $this->load->view('PostsView', $data);
+
+    }
+    public function getCommentsByPostId($id){
+      $data['data'] = $this->PostsModel->getCommentsFor($id);
+      $this->load->view('PostsView', $data);
     }
 
   }

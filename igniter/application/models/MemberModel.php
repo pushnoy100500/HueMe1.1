@@ -63,7 +63,7 @@ class MemberModel extends CI_Model {
         $userInfo = $this->db->query($qry);
         $user = $userInfo->result_array();
 
-        return json_encode($user);
+        return json_encode($user, JSON_UNESCAPED_UNICODE);
     }
     
 
@@ -76,7 +76,6 @@ class MemberModel extends CI_Model {
         }else {
             return false;
         }
-        //return json_encode($row); //) ? "true" : "false"); 
     }
 
     public function userEmailExists($email){

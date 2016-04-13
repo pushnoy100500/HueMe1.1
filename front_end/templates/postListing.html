@@ -17,6 +17,9 @@
 					<div ng-if="!value.photo">
 						<img class="post-profile-photo" src="styles/styleImgs/avatarD1.png" />
 					</div>
+					<div ng-if="$index == postListingCtrl.selectedIndex && postListingCtrl.commentingMode">
+						<div class="close-post" ng-click="postListingCtrl.commentingMode = !postListingCtrl.commentingMode"><i class="fa fa-times"></i></div>
+					</div>
 					<div class="post-author">
 						{{value.user}}
 					</div>

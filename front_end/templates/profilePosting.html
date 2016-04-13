@@ -26,7 +26,7 @@
 						</span>
 					</span>
 				</label>
-				<input type="text" class="form-control hash-tag-input" ng-model="profilePostingCtrl.hashTag" ng-keyup="profilePostingCtrl.addHashTag($event, profilePostingCtrl.hashTag)" ng-keypress="$event.which == 13 ? $event.preventDefault() : ''	" placeholder="tags">
+				<input type="text" id="hash-tag-input" class="form-control hash-tag-input" ng-model="profilePostingCtrl.hashTag" ng-keyup="profilePostingCtrl.addHashTag($event, profilePostingCtrl.hashTag)" ng-keypress="$event.which == 13 ? $event.preventDefault() : ''	" placeholder="tags">
 			</div>
 			<div class="form-group">
 				<label>Your message:</label>

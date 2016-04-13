@@ -24,14 +24,28 @@ app.directive("profilePostingDir", function(postingService) {
 			};
 			this.moodColours = postingService.moodColours;
 			this.addHashTag = function(event, hashTag) {
-				if(event.which === 32 || event.which === 13) {
-					this.hashTags.push(hashTag);
-					this.hashTag = '';
-				}
+					if(event.which === 32 || event.which === 13) {
+						this.hashTags.push(hashTag);
+						this.hashTag = '';
+						if(this.hashTags.length >= 3) {
+							this.disableTagging();
+						}
+					}
 
+			};
+			this.disableTagging = function() {
+				var input = document.getElementById('hash-tag-input');
+				input.setAttribute('placeholder', '#EnoughHashTags!');
+				input.setAttribute('disabled', 'disabled');
+			};
+			this.enableTagging = function() {
+				var input = document.getElementById('hash-tag-input');
+				input.setAttribute('placeholder', 'tags');
+				input.removeAttribute('disabled');
 			};
 			this.removeHashTag = function(index) {
 				this.hashTags.splice(index, 1);
+				this.enableTagging();
 			};
 		},
 		controllerAs: "profilePostingCtrl"

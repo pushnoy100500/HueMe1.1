@@ -1,3 +1,13 @@
+input[type="text"],
+input[type="password"],
+textarea {
+  font-size: 16px;
+}
+
+.input-group .form-control {
+    margin: 0px !important;
+}
+
 .row {
 	margin-left: 0px;
 	margin-right: 0px;
@@ -203,7 +213,7 @@ body {
 }
 
 .custom-modal {
-	position: fixed;
+	position: absolute;
 	left: 50%;
 	margin-left: -20%;
 	width: 40%;
@@ -389,6 +399,7 @@ input[type=checkbox]:checked + label:after {
 	overflow-y: auto;
 	overflow-x: hidden;
 	height: 250px;
+	word-wrap: normal;
 	box-shadow: inset -2px 1px 5px #ececec,
 	 						inset -2px -1px 5px #ececec;
 }
@@ -438,40 +449,17 @@ input[type=checkbox]:checked + label:after {
 	}
 
 	.commentBox{
-		width: 380px !important;
-		height: 530px;
+		width: 90% !important;
 	}
 
-	#comment-inputbox{
-		width: 340px !important;
-		height: 80px !important;
-	}
 }
 
 @media screen and (max-width: 380px) {
 	.commentBox{
 		transition: all 1s ease !important;
-		width: 350px !important;
-		height: 520px !important;
-	}
-
-	#comment-inputbox{
-		width: 300px !important;
-		height: 80px !important;
 	}
 }
 
-@media screen and (max-width: 330px) {
-	.commentBox{
-		width: 300px !important;
-		height: 570px !important;
-	}
-
-	#comment-inputbox{
-		width: 250px !important;
-		height: 100px !important;
-	}
-}
 
 section {
 	padding: 0;
@@ -556,20 +544,6 @@ section {
 	border-bottom: 1px solid rgba(0,0,0, 0.3);
 }
 
-/*
-.post-new-header {
-	position: relative;
-	height: 49px;
-	border-bottom: 1px solid rgba(0,0,0, 0.3);
-}
-
-.post-new-title {
-	text-align: center;
-	font-weight: 900;
-	line-height: 49px;
-}
-
-*/
 .post-author {
 	color: inherit;
 	text-shadow: 2px 2px 0px rgba(0,0,0, 0.7);
@@ -578,21 +552,6 @@ section {
 	font-weight: 900;
 }
 
-/*
-.post-new-content {
-	position: relative;
-	color: black;
-	text-align: center;
-	min-height: 295px;
-	padding: 0 15px 15px 15px;
-}
-
-.post-new-button {
-	display: inline-block;
-	margin-top: 95px;
-	font-size: 72px;
-}
-*/
 .post-content {
 	position: relative;
 	color: black;
@@ -600,16 +559,6 @@ section {
 	padding: 0 15px 15px 15px;
 	word-break :break-all;
 }
-
-/*
-.post-content::before, .post-content::after {
-	position: relative;
-	font-family: 'FontAwesome';
-	font-size: 6px;
-	top: -6px;
-}
-*/
-
 
 .post-profile-photo {
 	float: left;
@@ -621,7 +570,7 @@ section {
 	background-color: rgba(0,0,0, 0.3);
 }
 
-.float-right, .float-left {
+.float-right {
 	display: block;
 	position: relative;
 	height: 49px;
@@ -632,11 +581,6 @@ section {
 .float-right {
 	float: right;
 	padding-right: 8px;
-}
-
-.float-left {
-	float: left;
-	padding-left: 8px;
 }
 
 /*
@@ -692,7 +636,7 @@ section {
 	opacity: 0.8;
 }
 
-.float-right > a > i.fa.fa-comment {
+.float-right > i.fa.fa-comment {
 	color: #eee;
 	line-height: 49px;
 }
@@ -1019,7 +963,7 @@ section {
 @media screen and (max-width: 580px)
 {
 	.custom-modal {
-		width: 60%;
+		width: 90%;
 	}
 
 	#car{
@@ -1038,7 +982,7 @@ section {
 @media screen and (max-width: 400px)
 {
 	.custom-modal {
-		width: 60%;
+		width: 90%;
 	}
 
 	.reg-log{
@@ -1047,6 +991,10 @@ section {
 
 	.actions{
 		height: 100px;
+	}
+
+	.flex-panel {
+		width: 95%;
 	}
 }
 

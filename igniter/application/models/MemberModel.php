@@ -7,7 +7,7 @@ class MemberModel extends CI_Model {
         $json_reg = $register; // json_decode($register);
         if(!$this->userExists($json_reg['username'],$json_reg['email'])){
 
-            $qr = 'INSERT INTO users (username, password, email) VALUES ("' . $json_reg['username'] . '", "' . $json_reg['password'] . '", "' . $json_reg['email'] . '")';
+            $qr = 'INSERT INTO users (username, password, email) VALUES ("' . $json_reg['username'] . '", "' . MD5($json_reg['password']) . '", "' . $json_reg['email'] . '")';
             $rs = $this->db->query($qr);
 
         //this is the same as inser_id in php
@@ -26,7 +26,7 @@ class MemberModel extends CI_Model {
 
     function loginUser($user) {
         $json_user = $user; //json_decode($user);
-        $query = "SELECT id FROM users WHERE username = '" . $json_user['username'] . "' AND password = '" . $json_user['password'] . "'";
+        $query = "SELECT id FROM users WHERE username = '" . $json_user['username'] . "' AND password = '" . MD5($json_user['password']) . "'";
         $rs = $this->db->query($query);
         $id = $rs->row();
         if ($id) {

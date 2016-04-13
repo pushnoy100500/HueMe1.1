@@ -19,10 +19,7 @@ class MemberModel extends CI_Model {
                 return http_response_code(409);
             }
         }else{
-            return json_encode("{
-                'username' : '". $this->usernameExists($json_reg['username']) . "',
-                'email' : '" . $this->userEmailExists($json_reg['email']) . "'
-            }");
+            return json_encode(array('username_exist' => ($this->usernameExists($json_reg['username']) ? 1 : 0), 'email_exist' => ($this->userEmailExists($json_reg['email']) ? 1 : 0) ) );         
         }
 
     }

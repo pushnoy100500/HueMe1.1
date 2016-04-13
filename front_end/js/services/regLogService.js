@@ -2,12 +2,24 @@ var app = angular.module("HueMeApp");
 app.service("regLogService", function($http, $localStorage, urlService) {
 	var self = this;
 	this.registerUser = function(userData, callback){
+
 		$http.post(urlService.registerUrl,{'user': userData })
 		.then(function(response) {
 			var user = response.data;
-			$localStorage.user = user;
-			$localStorage.isLoggedIn = true;
-			callback(true);
+			console.log(user);
+			if(user.username_exist == 1 || user.email_exist == 1) {
+				callback({
+					'success': false,
+					'username_exist': user.username_exist,
+					'email_exist': user.email_exist
+				});
+			} else {
+				$localStorage.user = user;
+				$localStorage.isLoggedIn = true;
+				user.success = true;
+				callback(user);
+			}
+			
 		}, function(error) {
 			callback(false);
 		});

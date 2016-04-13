@@ -14,6 +14,9 @@
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
 				<input ng-model="ctrl.formModel.username" ng-pattern="/^[A-Za-z0-9_]{1,15}$/" ng-pattern-err-type="unameErr" ng-minlength="5" type="text" class="form-control" id="username" name="username" required autocomplete="off" placeholder="Username"/>
 			</div>
+			<p class="exist-error" ng-show="ctrl.username_exist">
+				This Username is already taken
+			</p>
 		</div>
 
 		<div class="form-group">
@@ -28,13 +31,15 @@
 				<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
 				<input ng-model="ctrl.formModel.email" type="email" class="form-control" id="email" name="email" required autocomplete="off" placeholder="Email address"/>
 			</div>
+			<p class="exist-error" ng-show="ctrl.email_exist">
+				This Email address is already taken
+			</p>
 		</div>
 		<div class="checkboxes">
 			<div class="form-group tos-group" style="margin: 10px 0 5px 0;">
 				<input type="checkbox" id="tos" name="tos" required>
 				<label for="tos"></label>
 				<span>I agree with the <a  ui-sref="landing.tos" class="tos-button">terms of service</a>. </span>
-
 			</div>
 
 			<div lass="form-group" style="margin-bottom: 5px">

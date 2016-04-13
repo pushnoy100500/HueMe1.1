@@ -12,7 +12,7 @@ app.filter('range', function() {
   };
 });
 
-app.directive('myProfileDir', function($localStorage, $location, $state, regLogService, updateProfileService, avatarService, countryService) {
+app.directive('myProfileDir', function($localStorage, $rootScope, $location, $state, regLogService, updateProfileService, profileService, avatarService, countryService) {
   return {
     restrict: "E",
     scope: true,
@@ -36,8 +36,16 @@ app.directive('myProfileDir', function($localStorage, $location, $state, regLogS
                   'October': 31,
                   'November': 30,
                   'December': 31 };
-
-      $scope.user = $localStorage.user[0];
+      if($rootScope.isMyProfile) {
+         $scope.user = $localStorage.user[0];
+      } else {
+        alert($rootScope.visitingProfile)
+        profileService.getProfile($rootScope.visitingProfile, function(usr) {
+           $scope.user = usr;
+        })
+        
+      }
+     
       this.user = $localStorage.user[0];
       if(!$scope.user.dob) {
         $scope.user.dob = {month: "", day: "", year: ""};

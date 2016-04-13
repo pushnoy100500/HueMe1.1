@@ -13,4 +13,5 @@ app.service('urlService', function() {
 	// using get posts by ten now
 	this.allPostsUrl = "http://localhost:8888/CIHueMe/index.php/postsByTen/0";
 	this.aboutUrl = "http://localhost:8888/CIHueMe/index.php/about";
+	this.getProfileUrl = "http://localhost:8888/CIHueMe/index.php/getProfile/";
 });

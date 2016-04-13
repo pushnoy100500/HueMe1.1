@@ -44,7 +44,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('myprofile', {
 			url: "/myprofile",
-			template: "<my-profile-dir></my-profile-dir>"
+			template: "<my-profile-dir></my-profile-dir>",
+			controller: function($rootScope) {
+				$rootScope.isMyProfile = true;
+			}
 		})
 		.state('myprofile.profileposting', {
 			url: "/profileposting/",
@@ -72,6 +75,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				return '<search-dir></search-dir>';
 			}
 		})
+		// .state('profiles', {
+		// 	url: "/profiles/:userId",
+		// 	template: "<my-profile-dir></my-profile-dir>",
+		// 	controller: function($rootScope, $stateParams) {
+		// 		$rootScope.isMyProfile = false;
+		// 		$rootScope.visitingProfile = $stateParams.userId;
+		// 	}
+		// })
 		.state('about', {
 			url: "/about",
 			template: "<about-dir></about-dir>"

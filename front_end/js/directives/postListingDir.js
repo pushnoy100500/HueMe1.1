@@ -17,7 +17,7 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 			filter: "=",
 			poststemp: "="
 		},
-		controller: function($scope, postingService, timeSinceService) {
+		controller: function($scope, $timeout, postingService, timeSinceService) {
 			var self = this;
 			this.filter = $scope.filter;
 
@@ -31,6 +31,7 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 				case "id":
 					postingService.getPostsByUser(this.filter.value,
 					function(result) {
+						console.log(result)
 						self.waiting = false;
 						self.posts = result;
 						self.posts = self.posts.map(function(post) {
@@ -78,10 +79,18 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 			this.userId = $localStorage.user[0].id;
 
 		 	this.enableComment = function ($index){
+		 		//$rootScope.$broadcast('commentPosted');
 		 		this.selectedIndex = $index;
 		 		this.commentingMode = !this.commentingMode;
 				this.viewCommentMode = !this.viewCommentMode;
 		 	};
+
+		 	$scope.$on('commentSubmit', function() {
+		 			$timeout(function() {
+		 				$scope.$broadcast("commentPosted");
+		 			}, 200);		 			
+		 	})
+		 	
 		},
 		controllerAs: "postListingCtrl"
 	};

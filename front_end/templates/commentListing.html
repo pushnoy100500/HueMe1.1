@@ -7,6 +7,7 @@
 </span>
 
 <div class="postComment" ng-show="!commentListingCtrl.waiting" ng-repeat="comment in commentListingCtrl.comments" ng-if="commentListingCtrl.comments.length > 0">
+	<p class="commentedBy"><img src="{{comment.photo_url}}" alt=""> {{comment.username}}:</p> 
 	<div class="postCommentBody">
 		{{comment.content}}
 	</div>

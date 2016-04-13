@@ -63,7 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 					return postingService.getAllPosts();
 				}
 			},
-			controller: function(filter, posts) {
+			controller: function($scope, filter, posts) {
 				this.filter = filter;
 				this.posts = posts.data;
 			},

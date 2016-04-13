@@ -41,7 +41,7 @@
 				<label for="tos"></label>
 				<span>I agree with the <a  ui-sref="landing.tos" class="tos-button">terms of service</a>. </span>
 				<br />
-				<span ng-show="ctrl.tosErr" style="color: #EF0000">You must agree to the terms of service.</span>
+				<span ng-show="ctrl.tosErr" class="exist-error">You must agree to the terms of service.</span>
 			</div>
 
 			<div lass="form-group" style="margin-bottom: 5px">
@@ -50,7 +50,7 @@
 				<label for="ageVerify"></label>
 				<span>I confirm that I am AT LEAST 14 years of age.</span>
 				<br />
-				<span ng-show="ctrl.ageErr" style="color: #EF0000">Please verify your age.</span>
+				<span ng-show="ctrl.ageErr" class="exist-error">Please verify your age.</span>
 
 			</div>
 		</div>

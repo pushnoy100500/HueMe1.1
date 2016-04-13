@@ -12,15 +12,20 @@ app.directive("profilePostingDir", function(postingService) {
 			this.makePost = function(event) {
 				//prevent page reloading
 				event.preventDefault();
-				// put hastags together, add user id
-				this.postingData.tags = this.hashTags.join();
-				this.postingData.userId = $scope.$parent.profileId;
-				//post a message
-				console.log(this.postingData);
-				postingService.sendPost(this.postingData);
-				//clear up the scope
-				this.postingData = {};
-				this.hashTags = [];				
+				//console.log(this.postingData.mood_colours_id);
+				if(this.postingData.mood_colours_id !== "" && this.postingData.content.length !== 0) {
+					// put hastags together, add user id
+					this.postingData.tags = this.hashTags.join();
+					this.postingData.userId = $scope.$parent.profileId;
+					//post a message
+					console.log(this.postingData);
+					postingService.sendPost(this.postingData);
+					//clear up the scope
+					this.postingData = {};
+					this.hashTags = [];
+					$scope.$emit('closeAddPost');
+				}
+
 			};
 			this.moodColours = postingService.moodColours;
 			this.addHashTag = function(event, hashTag) {
@@ -47,6 +52,7 @@ app.directive("profilePostingDir", function(postingService) {
 				this.hashTags.splice(index, 1);
 				this.enableTagging();
 			};
+
 		},
 		controllerAs: "profilePostingCtrl"
 	};

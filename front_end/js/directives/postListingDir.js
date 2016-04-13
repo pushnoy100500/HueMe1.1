@@ -19,6 +19,15 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 		},
 		controller: function($scope, $timeout, postingService, timeSinceService) {
 			var self = this;
+			$scope.$on('newPost', function() {
+
+					postingService.getAllPosts()
+					.then(function(success) {
+						console.log(success.data);
+					}, function(error) {
+						console.log(error);
+					});
+			});
 			this.filter = $scope.filter;
 
 			this.waiting = true;
@@ -89,7 +98,7 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 		 			$timeout(function() {
 		 				$scope.$broadcast("commentPosted");
 		 			}, 200);
-		 	})
+		 	});
 
 		},
 		controllerAs: "postListingCtrl"

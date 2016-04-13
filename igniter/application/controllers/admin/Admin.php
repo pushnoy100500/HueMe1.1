@@ -38,40 +38,40 @@ class Admin extends CI_Controller {
 	public function loadPostsStats(){
 		//get all posts and sort by colour and put into class
 		$data['data'] = $this->AdminModel->getAllPosts();
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 		
 	}
 
 	public function activateMember($id){
 		//$this->model->load('AdminModel');
 		$data['data'] = $this->AdminModel->activateUser($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 	}
 
 	public function deactivateMember($id){
 		//$this->model->load('AdminModel');
 		$data['data'] = $this->AdminModel->deactivateUser($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 	}
 
 	public function deactivatePost($id){
 		$data['data'] = $this->AdminModel->deactivatePost($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 	}
 
 	public function activatePost($id){
 		$data['data'] = $this->AdminModel->activatePost($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 	}
 
 	public function deactivateComment($id){
 		$data['data'] = $this->AdminModel->deactivateComment($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 	}
 
 	public function activateComment($id){
 		$data['data'] = $this->AdminModel->activateComment($id);
-		$this->load->view('AdminView', $data);
+		$this->load->view('admin/AdminView', $data);
 
 	}
 

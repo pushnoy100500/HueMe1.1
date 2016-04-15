@@ -40,8 +40,9 @@ class Member extends CI_Controller {
     public function updateProfile() {
         $user = json_decode(file_get_contents('php://input'), true)['user']; //$this->input->post('user');
         //$this->load->model('MemberModel'); //Loads the model        
-        $data['data'] = $this->MemberModel->updateProfile($user); //executes function from model returns rexcord set
-        $this->load->view('MemberView', $data); //directs and passes data from the databse to the view
+      //  $data['data'] = $this->MemberModel->updateProfile($user); //executes function from model returns rexcord set
+        echo $this->MemberModel->updateProfile($user);
+    //    $this->load->view('MemberView', $data); //directs and passes data from the databse to the view
     }
     public function checkUsername(){
         $user = json_decode(file_get_contents('php://input'), true)['user'];
@@ -55,5 +56,8 @@ class Member extends CI_Controller {
         $this->load->view('MemberView', $data); //directs and passes data from the databse to the view
     }
     
-
+    public function getUser($id) {
+        $data['data'] = $this->MemberModel->getProfile($id);
+        $this->load->view('MemberView', $data);
+    }
 }

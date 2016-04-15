@@ -51,14 +51,14 @@ class MemberModel extends CI_Model {
         //,mood_colours_id=" . $user['colour'] . "
         
         if($this->usernameExists($user['username'])){
-            return json_encode('{"result" : " ' . $rs = $this->db->query($query) . '"}');
+            return json_encode('{"result" : "' . $rs = $this->db->query($query) . '"}');
         }else{
             return json_encode('{"result" : "0"}');
         }
         
     }
 
-    private function getProfile($id) {
+    public function getProfile($id) {
         $qry = 'SELECT id, username, dob, description, gender, status, country, region, city,zip_code, photo_url FROM users WHERE id = ' . $id;
         $userInfo = $this->db->query($qry);
         $user = $userInfo->result_array();

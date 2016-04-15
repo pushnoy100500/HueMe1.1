@@ -68,7 +68,7 @@ class PostsModel extends CI_Model{
 	}
 	public function getPosts($returnNum){
 			//$query = "SELECT * FROM posts  ORDER BY create_time  DESC LIMIT " . $returnNum;
-			$query = 'SELECT p.content "post", p.create_time "time", u.username "user", mc.id "colour", u.photo_url "photo"
+			$query = 'SELECT p.content "post", p.create_time "time", u.username "user", mc.id "colour", u.photo_url "photo", p.tags "tags"
 								FROM posts p, users u, mood_colours mc
 								WHERE p.users_id = u.id AND p.mood_colours_id = mc.id
 								ORDER BY p.create_time DESC LIMIT ' . $returnNum;

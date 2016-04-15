@@ -42,7 +42,6 @@ app.directive('postListingDir', function(postingService, $localStorage, $state) 
 				case "id":
 					postingService.getPostsByUser(this.filter.value,
 					function(result) {
-						console.log(result);
 						self.waiting = false;
 						self.posts = result;
 						self.posts = self.posts.map(function(post) {
@@ -75,7 +74,6 @@ app.directive('postListingDir', function(postingService, $localStorage, $state) 
 						});
 					}
 					//filtering on tags
-					console.log(self.filter.value.tags);
 					if($rootScope.filterTags) {						
 							self.posts = self.posts.filter(function(post) {
 								if(post.tags) {
@@ -83,7 +81,7 @@ app.directive('postListingDir', function(postingService, $localStorage, $state) 
 								}
 							});						
 					}
-					console.log(self.posts)
+					
 				break;
 				default:
 					// other search criteria logic

@@ -60,8 +60,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			},
 			resolve: {
 				filter: function($stateParams, $q, $rootScope, $state) {
-					console.log($stateParams.data);
-					console.log($state.current.name);
 					var deferred = $q.defer();
 					deferred.resolve($stateParams.data);
 					return deferred.promise;
@@ -71,8 +69,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				}
 			},
 			controller: function($scope, filter, posts) {
-					console.log(filter);
-
 				this.filter = filter;
 				this.posts = posts.data;
 			},

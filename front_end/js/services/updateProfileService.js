@@ -1,6 +1,7 @@
 var app = angular.module("HueMeApp");
 app.service("updateProfileService", function($http, $localStorage, urlService) {
 	this.updateUser = function(userData, callback){
+		console.log({'user': userData })
 		$http.post(urlService.updateProfUrl, {'user': userData })
 		.then(function(response) {
 			console.log(response);

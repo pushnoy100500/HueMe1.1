@@ -44,7 +44,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('myprofile', {
 			url: "/myprofile",
-			template: "<my-profile-dir></my-profile-dir>"
+			template: "<my-profile-dir></my-profile-dir>",
+			controller: function($rootScope) {
+				$rootScope.isMyProfile = true;
+			}
 		})
 		.state('myprofile.profileposting', {
 			url: "/profileposting/",
@@ -56,8 +59,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				data: null
 			},
 			resolve: {
-				filter: function($stateParams, $rootScope) {
-					return $stateParams.data;
+				filter: function($stateParams, $q, $rootScope, $state) {
+					var deferred = $q.defer();
+					deferred.resolve($stateParams.data);
+					return deferred.promise;
 				},
 				posts: function($q, postingService) {
 					return postingService.getAllPosts();
@@ -72,6 +77,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				return '<search-dir></search-dir>';
 			}
 		})
+		// .state('profiles', {
+		// 	url: "/profiles/:userId",
+		// 	template: "<my-profile-dir></my-profile-dir>",
+		// 	controller: function($rootScope, $stateParams) {
+		// 		$rootScope.isMyProfile = false;
+		// 		$rootScope.visitingProfile = $stateParams.userId;
+		// 	}
+		// })
 		.state('about', {
 			url: "/about",
 			template: "<about-dir></about-dir>"

@@ -37,16 +37,20 @@
 		</div>
 		<div class="checkboxes">
 			<div class="form-group tos-group" style="margin: 10px 0 5px 0;">
-				<input type="checkbox" id="tos" name="tos" required>
+				<input type="checkbox" id="tos" name="tos" ng-click="ctrl.checked.tos = !ctrl.checked.tos">
 				<label for="tos"></label>
 				<span>I agree with the <a  ui-sref="landing.tos" class="tos-button">terms of service</a>. </span>
+				<br />
+				<span ng-show="ctrl.tosErr" class="exist-error">You must agree to the terms of service.</span>
 			</div>
 
 			<div lass="form-group" style="margin-bottom: 5px">
 
-				<input type="checkbox" id="ageVerify" name="ageVerify" required>
+				<input type="checkbox" id="ageVerify" name="ageVerify" ng-click="ctrl.checked.age = !ctrl.checked.age">
 				<label for="ageVerify"></label>
 				<span>I confirm that I am AT LEAST 14 years of age.</span>
+				<br />
+				<span ng-show="ctrl.ageErr" class="exist-error">Please verify your age.</span>
 
 			</div>
 		</div>

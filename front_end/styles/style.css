@@ -500,6 +500,18 @@ section {
 	-moz-transition: all 1s cubic-bezier(0.805, -0.590, 0.065, 1.535);
 }
 
+.close-post {
+  margin-top: 5px;
+  margin-right: 8px;
+  background: none;
+  color: rgba(255,255,255, 0.7);
+  float: right;
+  font-size: 1.5em;
+}
+.close-post:hover {
+  cursor: pointer;
+  color: rgba(0,0,0, 0.3);
+}
 /*
 
 .multi-post {
@@ -561,7 +573,7 @@ section {
 .post-content {
 	position: relative;
 	color: black;
-	min-height: 200px;
+	min-height: 250px;
 	padding: 0 15px 15px 15px;
 	word-break :break-all;
 }
@@ -933,6 +945,13 @@ section {
 		border-bottom-left-radius: 30%;
 		padding-bottom: 15px;
 	}
+}
+
+@media screen and (max-width: 1125px) {
+  .custom-modal {
+    margin-left: -25%;
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 871px) {

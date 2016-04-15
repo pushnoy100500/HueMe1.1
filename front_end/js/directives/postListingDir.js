@@ -9,7 +9,7 @@ var app = angular.module('HueMeApp');
 	}
 */
 
-app.directive('postListingDir', function(postingService, $localStorage) {
+app.directive('postListingDir', function(postingService, $localStorage, $state) {
 	return {
 		restrict: "E",
 		templateUrl: "templates/postListing.html",
@@ -17,8 +17,19 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 			filter: "=",
 			poststemp: "="
 		},
-		controller: function($scope, $timeout, postingService, timeSinceService) {
+		controller: function($scope, $timeout, postingService, timeSinceService, $state, $rootScope) {
 			var self = this;
+			$scope.$on('newPost', function() {
+					postingService.getAllPosts()
+					.then(function(success) {
+						//console.log(success.data);
+						this.posts = success.data;
+						$state.go($state.current, {}, {reload: true});
+						console.log(this.posts);
+					}, function(error) {
+						console.log(error);
+					});
+			});
 			this.filter = $scope.filter;
 
 			this.waiting = true;
@@ -31,12 +42,11 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 				case "id":
 					postingService.getPostsByUser(this.filter.value,
 					function(result) {
-						console.log(result)
 						self.waiting = false;
 						self.posts = result;
 						self.posts = self.posts.map(function(post) {
 								//var post = post;
-								post.time = timeSinceService.timeSince(new Date(post.time));
+								post.time = timeSinceService.timeSince(post.time);
 								if(post.tags){
 									post.tags = post.tags.split(',');
 								}
@@ -64,12 +74,14 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 						});
 					}
 					//filtering on tags
-					if(self.filter.value.tags) {
-						self.posts = self.posts.filter(function(post) {
-							return post.tags.indexOf(self.filter.value.tags) >= 0;
-
-						});
+					if($rootScope.filterTags) {						
+							self.posts = self.posts.filter(function(post) {
+								if(post.tags) {
+									return post.tags.indexOf($rootScope.filterTags) >= 0;
+								}
+							});						
 					}
+					
 				break;
 				default:
 					// other search criteria logic
@@ -88,9 +100,9 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 		 	$scope.$on('commentSubmit', function() {
 		 			$timeout(function() {
 		 				$scope.$broadcast("commentPosted");
-		 			}, 200);		 			
-		 	})
-		 	
+		 			}, 100);
+		 	});
+
 		},
 		controllerAs: "postListingCtrl"
 	};

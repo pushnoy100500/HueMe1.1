@@ -29,13 +29,13 @@
 									 <input class="form-control" id="search-users" name="search-users" placeholder="Username" ng-model="users"/>
 								 </div>
 							 </div>
-							 <button class="btn btn-primary btn-block" ng-click="navigationCtrl.startSearch(tags, users)">
+							 <button class="btn btn-primary btn-block" type="button" ng-click="navigationCtrl.startSearch(tags, users)">
 							 	Search
 							 </button>
 						 </div>
 					 </li>
 					 <li class="dropdown">
-					 	 <a href="" ng-click="navigationCtrl.postingMode = !navigationCtrl.postingMode" class="dropdown-toggle" alt="Add Post" title="Add Post">
+					 	 <a href="" ng-click="nav.postingMode = !nav.postingMode" class="dropdown-toggle" alt="Add Post" title="Add Post">
 					 	 	<i class="fa fa-plus fa-2x"></i>
 							<span class="sr-only">Add Post</span>
 					 	 </a>
@@ -47,7 +47,7 @@
 			 </div>
 		 </div>
 		</nav>
-		<profile-posting-dir ng-show="navigationCtrl.postingMode"></profile-posting-dir>
+		<profile-posting-dir ng-show="nav.postingMode"></profile-posting-dir>
 		<script>
 
 			$(function() {

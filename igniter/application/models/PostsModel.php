@@ -59,7 +59,7 @@ class PostsModel extends CI_Model{
 
 	 public function getCommentsFor($postId) {
 		//$qry = 'SELECT * FROM comments WHERE posts_id = ' . $postId;
-		$qry = 'SELECT c.id, c.create_time, c.content, c.is_active, u.username "user" FROM comments c, users u WHERE posts_id = ' . $postId . ' AND c.users_id = u.id AND c.is_active = 1 AND u.is_active = 1 ORDER BY c.create_time DESC';
+		$qry = 'SELECT c.id, c.create_time, c.content, c.posts_id, u.username, u.photo_url FROM comments c INNER JOIN users u ON c.users_id = u.id WHERE c.posts_id = ' . $postId;
 		$comments = $this->db->query($qry);
 		return json_encode($comments->result_array());
 		/*
@@ -68,7 +68,7 @@ class PostsModel extends CI_Model{
 	}
 	public function getPosts($returnNum){
 			//$query = "SELECT * FROM posts  ORDER BY create_time  DESC LIMIT " . $returnNum;
-			$query = 'SELECT p.content "post", p.create_time "time", u.username "user", mc.id "colour", u.photo_url "photo"
+			$query = 'SELECT p.content "post", p.create_time "time", u.username "user", mc.id "colour", u.photo_url "photo", p.tags "tags"
 								FROM posts p, users u, mood_colours mc
 								WHERE p.users_id = u.id AND p.mood_colours_id = mc.id
 								ORDER BY p.create_time DESC LIMIT ' . $returnNum;

@@ -63,7 +63,7 @@ $route['member'] = 'Member/index';
 $route['updateProfile'] = 'Member/updateProfile';
 $route['checkUsername'] = 'Member/checkUsername';
 $route['checkEmail'] = 'Member/checkEmail';
-
+$route['getProfile/(:num)'] = "Member/getUser/$1";
 
 //post controller routes
 //$route['posts'] = 'Posts/index';
@@ -75,17 +75,16 @@ $route['postsByColour/(:num)'] = 'Posts/getAllPostsByColour/$1';
 $route['postsByTen/(:num)'] = 'Posts/getPostsByTen/$1';
 $route['getRecent/(:num)'] = 'Posts/getRecent/$1';
 $route['getComments/(:num)'] = 'Posts/getComments/$1';
-$route['commentsbypost/(:num)'] = 'Posts/getCommentsByPostId/$1';
 
 //admin routes
-$route['admin'] = 'admin/Admin/index';
-$route['activateUser/(:num)'] = 'admin/Admin/activateMember/$1';
-$route['deactivateUser/(:num)'] = 'admin/Admin/deactivateMember/$1';
-$route['activatePost/(:num)'] = 'admin/Admin/activatePost/$1';
-$route['deactivatePost/(:num)'] = 'admin/Admin/deactivatePost/$1';
-$route['activateComment/(:num)'] = 'admin/Admin/activateComment/$1';
-$route['deactivateComment/(:num)'] = 'admin/Admin/deactivateComment/$1';
-$route['admin/postStats'] = 'admin/Admin/loadPostsStats';
+// $route['admin'] = 'admin/Admin/index';
+// $route['activateUser/(:num)'] = 'Admin/activateMember/$1';
+// $route['deactivateUser/(:num)'] = 'Admin/deactivateMember/$1';
+// $route['activatePost/(:num)'] = 'Admin/activatePost/$1';
+// $route['deactivatePost/(:num)'] = 'Admin/deactivatePost/$1';
+// $route['activateComment/(:num)'] = 'Admin/activateComment/$1';
+// $route['deactivateComment/(:num)'] = 'Admin/deactivateComment/$1';
+// $route['admin/postStats'] = 'Admin/loadPostsStats';
 
 //test stuff
 $route['test'] = 'test/postTest';

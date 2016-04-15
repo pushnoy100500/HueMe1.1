@@ -51,7 +51,7 @@ class AdminModel extends CI_Model {
         $rs = $this->db->query($query); //gets the data from the table
         return json_encode($rs->result_array());
     }
-    //small query builder for activating and deactovating
+    //smalll query builder for activating and deactovating
 	private function qryBuilder($table, $is_active, $id){
 		return sprintf('UPDATE %s SET is_active = %d WHERE id = %d', $table, $is_active, $id);
 	}

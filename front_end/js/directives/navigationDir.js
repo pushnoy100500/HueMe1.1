@@ -4,11 +4,11 @@ app.directive('navigationDir', function($state, regLogService) {
 	return {
 		restrict: "E",
 		templateUrl: "templates/navigation.html",
-		controller: function($scope, $timeout) {
+		controller: function($scope, $timeout, $rootScope) {
 			$scope.nav = {};
 			$scope.nav.postingMode = false;
 			this.startSearch = function(tags, users) {
-			
+				$rootScope.filterTags = tags;
 				$state.go('search',
 					{
 						data: {

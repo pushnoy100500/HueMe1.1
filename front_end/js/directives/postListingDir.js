@@ -17,7 +17,7 @@ app.directive('postListingDir', function(postingService, $localStorage, $state) 
 			filter: "=",
 			poststemp: "="
 		},
-		controller: function($scope, $timeout, postingService, timeSinceService, $state) {
+		controller: function($scope, $timeout, postingService, timeSinceService, $state, $rootScope) {
 			var self = this;
 			$scope.$on('newPost', function() {
 					postingService.getAllPosts()
@@ -76,10 +76,10 @@ app.directive('postListingDir', function(postingService, $localStorage, $state) 
 					}
 					//filtering on tags
 					console.log(self.filter.value.tags);
-					if(self.filter.value.tags) {						
+					if($rootScope.filterTags) {						
 							self.posts = self.posts.filter(function(post) {
 								if(post.tags) {
-									return post.tags.indexOf(self.filter.value.tags) >= 0;
+									return post.tags.indexOf($rootScope.filterTags) >= 0;
 								}
 							});						
 					}

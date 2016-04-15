@@ -23,10 +23,7 @@
 		</div>
 		<div class="panel panel-primary flex-panel">
 			<div class="panel-heading">About Me
-			<!-- hides the editing option if it's not myprofile -->
-			<span ng-show="isMyProfile">
-				 <i  class="fa fa-pencil edit-profile" ng-click="profileCtrl.enableEditor()" ng-hide="profileCtrl.editorEnabled"></i>
-			 </span>
+				 <i class="fa fa-pencil edit-profile" ng-click="profileCtrl.enableEditor()" ng-hide="profileCtrl.editorEnabled"></i>
 				 <i class="fa fa-times edit-profile" ng-show="profileCtrl.editorEnabled" value="cancel" ng-click="profileCtrl.disableEditor()"></i>
 				 <i class="fa fa-floppy-o edit-profile" ng-show="profileCtrl.editorEnabled" value="save" ng-click="profileCtrl.save()" style="margin-right: 5px;"></i>
 			</div>

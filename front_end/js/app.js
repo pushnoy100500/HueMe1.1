@@ -59,14 +59,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				data: null
 			},
 			resolve: {
-				filter: function($stateParams, $rootScope) {
-					return $stateParams.data;
+				filter: function($stateParams, $q, $rootScope, $state) {
+					console.log($stateParams.data);
+					console.log($state.current.name);
+					var deferred = $q.defer();
+					deferred.resolve($stateParams.data);
+					return deferred.promise;
 				},
 				posts: function($q, postingService) {
 					return postingService.getAllPosts();
 				}
 			},
 			controller: function($scope, filter, posts) {
+					console.log(filter);
+
 				this.filter = filter;
 				this.posts = posts.data;
 			},

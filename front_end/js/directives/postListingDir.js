@@ -9,7 +9,7 @@ var app = angular.module('HueMeApp');
 	}
 */
 
-app.directive('postListingDir', function(postingService, $localStorage) {
+app.directive('postListingDir', function(postingService, $localStorage, $state) {
 	return {
 		restrict: "E",
 		templateUrl: "templates/postListing.html",
@@ -17,13 +17,15 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 			filter: "=",
 			poststemp: "="
 		},
-		controller: function($scope, $timeout, postingService, timeSinceService) {
+		controller: function($scope, $timeout, postingService, timeSinceService, $state) {
 			var self = this;
 			$scope.$on('newPost', function() {
-
 					postingService.getAllPosts()
 					.then(function(success) {
-						console.log(success.data);
+						//console.log(success.data);
+						this.posts = success.data;
+						$state.go($state.current, {}, {reload: true});
+						console.log(this.posts);
 					}, function(error) {
 						console.log(error);
 					});
@@ -73,12 +75,15 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 						});
 					}
 					//filtering on tags
-					if(self.filter.value.tags) {
-						self.posts = self.posts.filter(function(post) {
-							return post.tags.indexOf(self.filter.value.tags) >= 0;
-
-						});
+					console.log(self.filter.value.tags);
+					if(self.filter.value.tags) {						
+							self.posts = self.posts.filter(function(post) {
+								if(post.tags) {
+									return post.tags.indexOf(self.filter.value.tags) >= 0;
+								}
+							});						
 					}
+					console.log(self.posts)
 				break;
 				default:
 					// other search criteria logic
@@ -97,7 +102,7 @@ app.directive('postListingDir', function(postingService, $localStorage) {
 		 	$scope.$on('commentSubmit', function() {
 		 			$timeout(function() {
 		 				$scope.$broadcast("commentPosted");
-		 			}, 200);
+		 			}, 100);
 		 	});
 
 		},

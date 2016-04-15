@@ -4,10 +4,11 @@ app.directive('navigationDir', function($state, regLogService) {
 	return {
 		restrict: "E",
 		templateUrl: "templates/navigation.html",
-		controller: function($scope) {
+		controller: function($scope, $timeout) {
 			$scope.nav = {};
 			$scope.nav.postingMode = false;
 			this.startSearch = function(tags, users) {
+			
 				$state.go('search',
 					{
 						data: {
@@ -23,10 +24,17 @@ app.directive('navigationDir', function($state, regLogService) {
 		        });
 	     	};
 
-			 $scope.$on('closeAddPost', function(event) {
+			$scope.$on('closeAddPost', function(event) {
 				 $scope.nav.postingMode = false;
-				 $scope.$broadcast('newPost');
-			 });
+				 if($state.current.name != "search") {
+					 $state.go('search');
+				 } else {
+					 $timeout(function() {
+						 $scope.$broadcast('newPost');
+
+					 }, 50);
+				 }
+			 });	
 		},
 		controllerAs: "navigationCtrl"
 	};
